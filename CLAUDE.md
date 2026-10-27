@@ -9,6 +9,7 @@ comme à un pair technique.
 ## Contraintes
 - Zéro coût : aucun service, aucun outil ni aucune bibliothèque payante. En cas de doute, demander.
 - Poste modeste (MacBook 2011, Ubuntu 24.04, 8 Go) : éviter les outils lourds (Docker…).
+- Réponses concises ; détailler seulement si je le demande
 
 ## État du projet
 - Dépôt initialisé et publié sur GitHub (public). Aucun code pour l'instant.
