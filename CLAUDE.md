@@ -15,7 +15,13 @@ comme à un pair technique.
 - Dépôt initialisé et publié sur GitHub (public). Aucun code pour l'instant.
 - Stack technique pas encore choisie : ne rien installer sans décision explicite.
 
+## Stack
+- Vue 3 en Composition API (`<script setup lang="ts">`), TypeScript strict, Vite.
+- Sans Pinia (état porté par des composables) ni routeur (une seule page).
+- Détail et justification : docs/adr/0001-langage-framework-build.md.
+
 ## Façon de travailler
+- Les décisions structurantes sont dans docs/adr/. Ne pas en dévier, ni ajouter de dépendance, sans validation et nouvel ADR.
 - Avant toute modification de plus de quelques lignes : proposer un plan et attendre la validation.
 - Ne jamais pousser (git push) sans accord explicite.
 - Aucune nouvelle dépendance sans validation.
