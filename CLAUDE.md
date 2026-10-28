@@ -20,6 +20,10 @@ comme à un pair technique.
 - Sans Pinia (état porté par des composables) ni routeur (une seule page).
 - Détail et justification : docs/adr/0001-langage-framework-build.md.
 
+## Architecture
+- Trois couches : src/engine (moteur pur), src/composables (pont réactif), src/components (affichage).
+- Dépendances : components → composables → engine (moteur sans dépendance ; components → engine en `import type` seulement) ; voir docs/adr/0002-architecture-applicative.md.
+
 ## Façon de travailler
 - Les décisions structurantes sont dans docs/adr/. Ne pas en dévier, ni ajouter de dépendance, sans validation et nouvel ADR.
 - Avant toute modification de plus de quelques lignes : proposer un plan et attendre la validation.
