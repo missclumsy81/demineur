@@ -6,6 +6,11 @@
     // Extra safety for array and object lookups, but may have false positives.
     "noUncheckedIndexedAccess": true,
 
+    // Extra strictness beyond `strict`.
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "erasableSyntaxOnly": true,
+
     // Path mapping for cleaner imports.
     "paths": {
       "@/*": ["./src/*"]
