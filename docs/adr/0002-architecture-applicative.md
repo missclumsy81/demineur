@@ -3,6 +3,7 @@
 - **Statut** : Accepté
 - **Date** : 28/10/2026
 - **Décideur** : Solveig Deral
+- Précisé le 01/11/2026 (règles vérifiées, outillage : ADR-0003)
 
 ## Contexte
 
@@ -45,8 +46,24 @@ Une classe avec un état interne.
   uniquement des types (`import type`).
 - **Style du moteur** : option A, avec types `Readonly`.
 - **Aléatoire injecté** via un générateur à graine, pour des tests reproductibles.
-- **Garantie outillée** : règle ESLint (`no-restricted-imports` et restriction des globals
-  sur `src/engine`), mise en place au lot 0.
+- **Garantie outillée** : règles ESLint (voir section « Vérification »), mises en place au lot 0.
+
+## Vérification
+
+Règles vérifiées, par dossier :
+
+- `src/engine` : imports de Vue et des autres couches interdits ; globals du navigateur
+  interdits (`window`, `document`, `localStorage`) ;
+- `src/composables` : imports de `src/components` interdits ;
+- `src/components` : imports de `src/engine` limités aux types (`import type`) ;
+- `src/App.vue` : même règle que `src/components` ;
+- `src/main.ts` : point d'assemblage, hors périmètre des règles.
+
+Critère, résultat attendu de `npm run lint` :
+
+- import de `vue` dans `src/engine` : échec ;
+- import de valeur du moteur dans un composant : échec ;
+- import de type du moteur dans un composant : succès.
 
 ## Conséquences
 
