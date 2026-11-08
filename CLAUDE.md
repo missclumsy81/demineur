@@ -15,8 +15,11 @@ comme à un pair technique.
 
 ## État du projet
 
-- Dépôt initialisé et publié sur GitHub (public). Aucun code pour l'instant.
-- Stack choisie (ADR-0001), rien d'installé avant le lot 0.
+- Lot 0 en cours. Faits : squelette Vite + Vue, qualité de code et frontières d'architecture
+  vérifiées par ESLint (ADR-0003), outillage de test (ADR-0004).
+- Reste au lot 0 : CI/CD, versionnage, déploiement (ADR-0005 à venir).
+- Aucune logique de jeu : src/ ne contient que App.vue et main.ts.
+- Spécifications : docs/01-specifications.md (règles RG-xx, stories US-xx, exigences ENF-xx).
 
 ## Stack
 
@@ -28,6 +31,14 @@ comme à un pair technique.
 
 - Trois couches : src/engine (moteur pur), src/composables (pont réactif), src/components (affichage).
 - Dépendances : components → composables → engine (moteur sans dépendance ; components → engine en `import type` seulement) ; voir docs/adr/0002-architecture-applicative.md.
+
+## Tests
+
+- Stratégie, niveaux et conventions : docs/adr/0004-strategie-de-tests.md.
+- Tests rangés dans tests/ (Vitest) et e2e/ (Playwright), jamais dans src/ : ailleurs, ils seraient ignorés.
+  L'intitulé cite la règle testée (`RG-04 : …`).
+- Avant de rendre la main : `npm run lint`, `npm run format:check`, `npm run type-check`,
+  `npm run test:coverage`, et `npm run test:e2e` si l'interface est touchée.
 
 ## Façon de travailler
 
