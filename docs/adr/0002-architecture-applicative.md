@@ -3,7 +3,7 @@
 - **Statut** : Accepté
 - **Date** : 28/10/2026
 - **Décideur** : Solveig Deral
-- Précisé le 01/11/2026 (règles vérifiées, outillage : ADR-0003)
+- Précisé le 01/11/2026 (règles vérifiées, outillage : ADR-0003) et le 17/11/2026
 
 ## Contexte
 
@@ -69,10 +69,25 @@ Critère, résultat attendu de `npm run lint` :
 Limites connues :
 
 - imports dynamiques `import()` non détectés ;
-- globals du navigateur limités à la liste (`window`, `document`, `localStorage`) ;
+- globals du navigateur limités à la liste (`window`, `document`, `localStorage`) ; (pour `src/engine`, couverte depuis le 17/11/2026 par la compilation sans
+  API d'environnement)
 - analyse textuelle des chemins : un dossier portant le nom d'une couche serait signalé à tort ;
 - en flat config, un bloc qui configure à nouveau `no-restricted-imports` sur les mêmes fichiers
   remplace les options précédentes au lieu de s'y ajouter.
+
+**Moteur compilé sans API d'environnement** (17/11/2026). `src/engine` est
+en outre vérifié par un projet TypeScript qui ne charge ni la bibliothèque
+`DOM` ni aucun type d'environnement (navigateur, Node, Vite). Toute API de
+ces environnements y est inconnue : son usage fait échouer
+`npm run type-check`. ESLint reste nécessaire pour les imports entre couches,
+que TypeScript ne contrôle pas. Conséquence : comme l'aléatoire, le temps est
+fourni au moteur ; il n'utilise pas de minuteur. Les options de rigueur de
+ce projet sont celles de l'application, mises en commun et non recopiées.
+
+**Contrôle permanent** (17/11/2026). Les critères de cette section sont
+rejoués par les tests de frontières (`tests/architecture`, ADR-0004, D6),
+qui soumettent du code fautif à ESLint : une règle désactivée en silence
+est détectée.
 
 ## Conséquences
 
