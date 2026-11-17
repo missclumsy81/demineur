@@ -1,0 +1,17 @@
+// Options communes à l'application et au moteur (ADR-0002) : à étendre, jamais à compiler seul.
+{
+  "compilerOptions": {
+    // Extra safety for array and object lookups, but may have false positives.
+    "noUncheckedIndexedAccess": true,
+
+    // Extra strictness beyond `strict`.
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "erasableSyntaxOnly": true,
+
+    // Path mapping for cleaner imports (resolved relative to this file).
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
